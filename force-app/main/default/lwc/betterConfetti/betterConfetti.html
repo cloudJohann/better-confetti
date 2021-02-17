@@ -1,12 +1,33 @@
 <template>
-    <lightning-card>
-        <lightning-combobox
-            name="confettiType"
-            label= "Confetti Type"
-            value={value}
-            placeholder = "Select Progress"
-            options = {confettiTypeOptions}
-            onchange = {onChangeConfettiType}></lightning-combobox>
-        <lightning-button variant="brand" label="Fire Confetti"  onclick={testConfetti} class="slds-m-left_x-small"></lightning-button>
-    </lightning-card>
+    <template if:true={previewActivated}>
+
+        <lightning-card
+            variant="narrow"
+            icon-name="action:preview">
+            <h1 slot="title">Preview Better Confetti</h1>
+            <p class="slds-p-horizontal_small">
+
+                <lightning-combobox
+                    name="confettiType"
+                    class="slds-m-bottom_x-small"
+                    label= "Confetti Type"
+                    value={confettiType}
+                    placeholder = "Select Confetti"
+                    options = {confettiTypeOptions}
+                    onchange = {onChangeConfettiType}></lightning-combobox>
+                <lightning-button variant="brand" label="Fire Confetti"  onclick={fireConfetti} class="slds-m-top_x-small"></lightning-button>
+                <lightning-combobox
+                    name="musicType"
+                    class="slds-m-bottom_x-small slds-m-top_x-small"
+                    label= "Music Type"
+                    value={musicType}
+                    placeholder = "Select Music"
+                    options = {musicTypeOptions}
+                    onchange = {onChangeMusicType}>
+                    </lightning-combobox>
+                <lightning-button variant="brand" label="Play Music"  onclick={playMusic} class="slds-m-top_x-small"></lightning-button>
+            </p>
+        </lightning-card>
+    </template>
+
 </template>

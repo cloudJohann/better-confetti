@@ -1,8 +1,13 @@
 import { LightningElement, api, wire } from 'lwc';
 import { getRecord } from 'lightning/uiRecordApi';
 import CONFETTI from '@salesforce/resourceUrl/Confetti';
+import MUSIC from '@salesforce/resourceUrl/sample_audio_files';
+import 	testFiles from '@salesforce/resourceUrl/audioFileTest';
+import image from '@salesforce/resourceUrl/testFiles';
+
+
 import { loadScript, loadStyle } from 'lightning/platformResourceLoader';
-import { isFunction } from './confettiGenerator';
+import { confettiHelau_Utils, feuerwerk_Utils, kanone_Utils, Doppelfontaene_Utils, regen_Utils } from './confettiGenerator';
 
 
 export default class BetterConfetti extends LightningElement {
@@ -11,30 +16,31 @@ export default class BetterConfetti extends LightningElement {
 
     @api field;
     @api value;
-    @api testMode;
+    @api previewActivated;
     @api confettiActivated;
     @api confettiType;
+    
     @api musicActivated;
     @api musicType;
     
+    oldFieldValue;
+    confettiInitialized = false;
+    fieldToBeChecked;
+
 
     get confettiTypeOptions () {
-        return [{label: 'New', value:'new'},
-        {label: 'Helau', value: 'Helau'}];
+        return [{label: 'Helau', value: 'Helau'},
+                {label: 'Doppelfontaene', value:'Doppelfontaene'},
+                {label: 'Feuerwerk', value:'Feuerwerk'},
+                {label: 'Kanone', value:'Kanone'},
+                {label: 'Regen', value:'Regen'}];
     }
 
-    //firework defaults too be cleaned
-    count = 200;
-    defaults = {
-        origin: { y: 0.0 }
-    };
 
-    oldFieldValue;
+    get musicTypeOptions () {
+        return [{label: 'testMusic', value: 'testMusic',}];
+    }
 
-    confettiInitialized = false;
-    
-
-    fieldToBeChecked;
 
     connectedCallback() {
         if(this.fieldToBeChecked == undefined){
@@ -84,12 +90,22 @@ export default class BetterConfetti extends LightningElement {
             console.log(data);
 
             console.log(data.fields[this.field].value);
-            const newValue = data.fields[this.field].value;
-
-            if(this.oldFieldValue != newValue && this.oldFieldValue != null){
+            let newValue = '';
+            if(data.fields[this.field].value != null){
+                newValue = data.fields[this.field].value;
+            }
+            console.log('newValue: ' +newValue);
+            if(this.oldFieldValue != newValue && this.oldFieldValue != undefined){
                 if(newValue.toLowerCase() == this.value.toLowerCase()){
                     console.log('field value changed and criteria fulfilled');
-                    this.fireConfetti(); 
+                    if(this.musicActivated){
+                        this.playMusic(); 
+                    }      
+                    if(this.confettiActivated){
+                        console.log
+                        this.fireConfetti(); 
+                    }
+              
                 }
             }
 
@@ -104,76 +120,32 @@ export default class BetterConfetti extends LightningElement {
 
     onChangeConfettiType(event){
         this.confettiType=event.detail.value;
-        console.log(this.confettiType);
     }
 
-    testConfetti(){
-        console.log('testConfetti')
-        this.fireConfetti()
+    onChangeMusicType(event){
+        this.musicType=event.detail.value;
     }
+
 
     fireConfetti(){
-        if(this.confettiType=="Helau") this.confettiHelau();
-        if(this.confettiType=="School Pride") this.schoolPride();
-        if(this.confettiType=="Fireworks") this.fireworks();
-        if(this.confettiType=="Basic Canon") this.basicCanon();
-        if(this.confettiType=="Surprise Celebration") this.surpriseCelebration();
+        if(this.confettiType=="Helau") confettiHelau_Utils();
+        if(this.confettiType=="Doppelfontaene") Doppelfontaene_Utils();
+        if(this.confettiType=="Feuerwerk") feuerwerk_Utils();
+        if(this.confettiType=="Kanone") kanone_Utils();
+        if(this.confettiType=="Regen") regen_Utils();
 
 
     }
 
-    confettiHelau() {
-        this.fireRealistic(0.9, 0.7);
-        this.fireRealistic(0.5, 0.7);
-        this.fireRealistic(0.1, 0.7); 
+    playMusic(){
+        let playThis = testFiles;
+        if(this.musicType == 'testMusic' ){
+            playThis += '/Audio_files_test/Success_blazeslazer.mp3';
+        }
+        var playSound = new Audio(playThis);
+        playSound.play();
+
     }
 
 
-
-    fireRealistic(xCordinate, yCordinate){
-        this.fire(0.25, {
-          spread: 26,
-          startVelocity: 55,
-          origin: { x: xCordinate ,y: yCordinate },
-          
-          
-        });
-        this.fire(0.2, {
-          spread: 60,
-            origin: { x: xCordinate, y: yCordinate },
-    
-        });
-        this.fire(0.35, {
-          spread: 100,
-          decay: 0.91,
-          scalar: 0.8,
-          origin: { x: xCordinate, y: yCordinate },
-    
-        });
-        this.fire(0.1, {
-          spread: 120,
-          startVelocity: 25,
-          decay: 0.92,
-          scalar: 1.2,
-                        origin: { x: xCordinate, y: yCordinate },
-    
-        });
-        this.fire(0.1, {
-          spread: 120,
-          startVelocity: 45,
-                        origin: { x: xCordinate, y: yCordinate },
-    
-        });
-    }
-
-    fire(particleRatio, opts) { 
-        window.confetti(Object.assign({}, this.defaults, opts, {
-            particleCount: Math.floor(this.count * particleRatio)
-        }));
-    }
-
-    buttonClick(){
-
-        isFunction('test');
-    }
 }

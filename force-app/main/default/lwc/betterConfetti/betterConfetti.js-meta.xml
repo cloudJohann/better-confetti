@@ -7,13 +7,13 @@
     </targets>
     <targetConfigs>
         <targetConfig targets="lightning__RecordPage">
-            <property label = "Test Mode" name ="testMode" type = "Boolean" description="Activates Buttons on the Component which allowes to test the different confetti and music." default="false"></property>
+            <property label = "Preview Mode" name ="previewActivated" type = "Boolean" description="Activates Buttons on the Component to preview different confetti and music." default="false"></property>
             <property label = "Field (API Name)" name ="field" type = "String" required="true"></property>
             <property label = "Value (API Value)" name ="value" type = "String"  required="true"></property>
             <property label = "Confetti Activated" name = "confettiActivated" type="Boolean" default = "true"> </property>
-            <property label = "Confetti Type" name ="confettiType" type = "String" datasource="Helau,Doppelfontäne,Feuerwerk, Kanone, Überraschung" default="Helau"  required="true"></property>
+            <property label = "Confetti Type" name ="confettiType" type = "String" datasource="Helau,Doppelfontaene,Feuerwerk, Kanone, Regen" default="Helau"  required="true"></property>
             <property label = "Music Activated" name = "musicActivated" type="Boolean" default = "false"> </property>
-            <property label = "Music Type" name ="musicType" type = "String" datasource="music1,music2" default="Confetti Helau"  required="true"></property>
+            <property label = "Music Type" name ="musicType" type = "String" datasource="testMusic" default="testMusic"  required="true"></property>
 
         </targetConfig>
 
