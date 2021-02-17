@@ -1,6 +1,7 @@
 {
   "orgName": "Demo company",
   "edition": "Developer",
+  "language": "en_EN",
   "features": [],
   "settings": {
     "lightningExperienceSettings": {

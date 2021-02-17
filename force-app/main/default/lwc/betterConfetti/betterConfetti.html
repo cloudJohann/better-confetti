@@ -1,3 +1,12 @@
 <template>
-    
+    <lightning-card>
+        <lightning-combobox
+            name="confettiType"
+            label= "Confetti Type"
+            value={value}
+            placeholder = "Select Progress"
+            options = {confettiTypeOptions}
+            onchange = {onChangeConfettiType}></lightning-combobox>
+        <lightning-button variant="brand" label="Fire Confetti"  onclick={testConfetti} class="slds-m-left_x-small"></lightning-button>
+    </lightning-card>
 </template>
