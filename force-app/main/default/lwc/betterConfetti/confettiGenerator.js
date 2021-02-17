@@ -93,6 +93,7 @@ export function Doppelfontaene_Utils(){
 
 
 export function confettiHelau_Utils(){
+        console.log('confettiHelau_Utils started');
         fireRealistic(0.9, 0.7);
         fireRealistic(0.5, 0.7);
         fireRealistic(0.1, 0.7); 
@@ -102,6 +103,7 @@ export function confettiHelau_Utils(){
 
 
     function fireRealistic(xCordinate, yCordinate){
+        console.log('fireRealistic started');
 
         fireForRealsitic(0.25, {
           spread: 26,
@@ -139,10 +141,12 @@ export function confettiHelau_Utils(){
     }
 
     function fireForRealsitic(particleRatio, opts) { 
+        console.log('fireForRealsitic started')
         const count = 50;
         const defaults = {
             origin: { y: 0.0 }
         };
+        
         window.confetti(Object.assign({}, defaults, opts, {
             particleCount: Math.floor(count * particleRatio)
         }));

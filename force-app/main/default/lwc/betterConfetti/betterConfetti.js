@@ -1,11 +1,6 @@
 import { LightningElement, api, wire } from 'lwc';
 import { getRecord } from 'lightning/uiRecordApi';
-import CONFETTI from '@salesforce/resourceUrl/Confetti';
-import MUSIC from '@salesforce/resourceUrl/sample_audio_files';
-import 	testFiles from '@salesforce/resourceUrl/audioFileTest';
-import image from '@salesforce/resourceUrl/testFiles';
-
-
+import BETTERCONFETTI from '@salesforce/resourceUrl/betterConfetti';
 import { loadScript, loadStyle } from 'lightning/platformResourceLoader';
 import { confettiHelau_Utils, feuerwerk_Utils, kanone_Utils, Doppelfontaene_Utils, regen_Utils } from './confettiGenerator';
 
@@ -54,21 +49,19 @@ export default class BetterConfetti extends LightningElement {
             return;
         }
         this.confettiInitialized = true;
+        let betterConfettiScriptResource = BETTERCONFETTI + '/betterConfetti/confettiScript/confetti_script.js';
+        //let betterConfettiScriptResource = CONFETTI;
+        console.log(betterConfettiScriptResource);
 
         Promise.all([
-            loadScript(this, CONFETTI ),
+            loadScript(this, betterConfettiScriptResource),
         ])
             .then(() => {
                 console.log('Confetti loaded');
                             })
             .catch(error => {
-                this.dispatchEvent(
-                    new ShowToastEvent({
-                        title: 'Error loading Confetti',
-                        message: error.message,
-                        variant: 'error'
-                    })
-                );
+                console.log('Error Loading Confetti Script');
+
             });
     }
     
@@ -138,12 +131,13 @@ export default class BetterConfetti extends LightningElement {
     }
 
     playMusic(){
-        let playThis = testFiles;
+        let playThis = BETTERCONFETTI;
         if(this.musicType == 'testMusic' ){
-            playThis += '/Audio_files_test/Success_blazeslazer.mp3';
+            playThis += '/betterConfetti/music/Organic_cloudcity.mp3';
         }
         var playSound = new Audio(playThis);
         playSound.play();
+
 
     }
 
