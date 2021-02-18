@@ -18,6 +18,7 @@ export default class BetterConfetti extends LightningElement {
     @api musicActivated;
     @api musicType;
     
+    playSound;
     oldFieldValue;
     confettiInitialized = false;
     fieldToBeChecked;
@@ -33,7 +34,15 @@ export default class BetterConfetti extends LightningElement {
 
 
     get musicTypeOptions () {
-        return [{label: 'testMusic', value: 'testMusic',}];
+        return [{label: 'Dodododo', value: 'Dodododo'},
+                {label: 'Schloss', value: 'Schloss'},
+                {label: 'Bratenfreude', value: 'Bratenfreude'},
+                {label: 'SonntagNachmittag', value: 'SonntagNachmittag'},
+                {label: 'Up', value: 'Up'},
+                {label: 'Sommer', value: 'Sommer'},
+                {label: 'Schlosseingang', value: 'Schlosseingang'},
+                {label: 'Preisverleihung', value: 'Preisverleihung'},
+                {label: 'Heimkommen', value: 'Heimkommen'}];
     }
 
 
@@ -41,6 +50,7 @@ export default class BetterConfetti extends LightningElement {
         if(this.fieldToBeChecked == undefined){
             this.fieldToBeChecked = this.objectApiName+'.'+this.field ;
         }
+
         console.log(this.fieldToBeChecked);
     }
 
@@ -63,6 +73,12 @@ export default class BetterConfetti extends LightningElement {
                 console.log('Error Loading Confetti Script');
 
             });
+    
+        //load the music file immediately to make it available for instant play
+        let playThis = BETTERCONFETTI;
+        playThis += '/betterConfetti/music/'+this.musicType + '.mp3';
+        this.playSound = new Audio(playThis);
+    
     }
     
 
@@ -88,6 +104,7 @@ export default class BetterConfetti extends LightningElement {
                 newValue = data.fields[this.field].value;
             }
             console.log('newValue: ' +newValue);
+            newValue = newValue.toString();
             if(this.oldFieldValue != newValue && this.oldFieldValue != undefined){
                 if(newValue.toLowerCase() == this.value.toLowerCase()){
                     console.log('field value changed and criteria fulfilled');
@@ -117,6 +134,10 @@ export default class BetterConfetti extends LightningElement {
 
     onChangeMusicType(event){
         this.musicType=event.detail.value;
+        //load the music file immediately to make it available for instant play
+        let playThis = BETTERCONFETTI;
+        playThis += '/betterConfetti/music/'+this.musicType + '.mp3';
+        this.playSound = new Audio(playThis);        
     }
 
 
@@ -131,12 +152,8 @@ export default class BetterConfetti extends LightningElement {
     }
 
     playMusic(){
-        let playThis = BETTERCONFETTI;
-        if(this.musicType == 'testMusic' ){
-            playThis += '/betterConfetti/music/Organic_cloudcity.mp3';
-        }
-        var playSound = new Audio(playThis);
-        playSound.play();
+
+        this.playSound.play();
 
 
     }
