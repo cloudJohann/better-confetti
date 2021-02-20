@@ -51,7 +51,6 @@ export default class BetterConfetti extends LightningElement {
         if (this.confettiInitialized) {
             return;
         }
-        this.confettiInitialized = true;
         let betterConfettiScriptResource = BETTERCONFETTI + '/betterConfetti/confettiScript/confetti_script.js';
         //let betterConfettiScriptResource = CONFETTI;
         console.log(betterConfettiScriptResource);
@@ -60,18 +59,16 @@ export default class BetterConfetti extends LightningElement {
             loadScript(this, betterConfettiScriptResource),
         ])
             .then(() => {
-                console.log('Confetti loaded');
-                            })
+                this.confettiInitialized = true;
+                //load the music file immediately to make it available for instant play
+                let playThis = BETTERCONFETTI;
+                playThis += '/betterConfetti/music/'+this.musicType + '.mp3';
+                this.playSound = new Audio(playThis);
+            })
             .catch(error => {
                 console.log('Error Loading Confetti Script');
 
             });
-    
-        //load the music file immediately to make it available for instant play
-        let playThis = BETTERCONFETTI;
-        playThis += '/betterConfetti/music/'+this.musicType + '.mp3';
-        this.playSound = new Audio(playThis);
-    
     }
     
 
@@ -130,20 +127,19 @@ export default class BetterConfetti extends LightningElement {
 
 
     fireConfetti(){
-        if(this.confettiType=="Helau") confettiHelau_Utils();
-        if(this.confettiType=="Doppelfontaene") Doppelfontaene_Utils();
-        if(this.confettiType=="Feuerwerk") feuerwerk_Utils();
-        if(this.confettiType=="Kanone") kanone_Utils();
-        if(this.confettiType=="Regen") regen_Utils();
-
-
+        if(this.confettiInitialized) {
+            if(this.confettiType=="Helau") confettiHelau_Utils();
+            if(this.confettiType=="Doppelfontaene") Doppelfontaene_Utils();
+            if(this.confettiType=="Feuerwerk") feuerwerk_Utils();
+            if(this.confettiType=="Kanone") kanone_Utils();
+            if(this.confettiType=="Regen") regen_Utils();
+        }
     }
 
     playMusic(){
-
-        this.playSound.play();
-
-
+        if(this.playSound) {
+            this.playSound.play();
+        }
     }
 
 
