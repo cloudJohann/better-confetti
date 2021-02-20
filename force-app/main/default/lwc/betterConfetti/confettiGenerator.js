@@ -26,11 +26,11 @@ export function feuerwerk_Utils(){
 }
 
 export function regen_Utils(){
-    var end = Date.now() + (15 * 100);
+    var end = Date.now() + (20 * 100);
     
     (function frame() {
         window.confetti({
-            particleCount: 5,
+            particleCount: 3,
             startVelocity: 0,
             ticks: 300,
             origin: {

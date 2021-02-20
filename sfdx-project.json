@@ -2,7 +2,7 @@
     "packageDirectories": [
         {
             "path": "force-app",
-            "package": "Better-Confetti",
+            "package": "Fabulous Confetti",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
             "default": true
@@ -12,8 +12,10 @@
     "sfdcLoginUrl": "https://login.salesforce.com",
     "sourceApiVersion": "50.0",
     "packageAliases": {
-        "Better-Confetti": "0Ho09000000GmdwCAC",
-        "Better-Confetti@0.1.0-1": "04t09000000IyyGAAS",
-        "Better-Confetti@0.1.0-2": "04t09000000IyyQAAS"
+        "Fabulous Confetti": "0Ho09000000GmdwCAC",
+        "Fabulous Confetti@0.1.0-1": "04t09000000IyyGAAS",
+        "Fabulous Confetti@0.1.0-2": "04t09000000IyyQAAS",
+        "Fabulous Confetti@0.1.0-3": "04t09000000IzOeAAK",
+        "Fabulous Confetti@0.1.0-4": "04t09000000IzOjAAK"
     }
 }

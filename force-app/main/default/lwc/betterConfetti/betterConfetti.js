@@ -17,12 +17,15 @@ export default class BetterConfetti extends LightningElement {
     
     @api musicActivated;
     @api musicType;
+
     
-    playSound;
+    
+
     oldFieldValue;
     confettiInitialized = false;
-    fieldToBeChecked;
-
+    get fieldToBeChecked(){
+        return this.objectApiName+'.'+this.field ;
+    }
 
     get confettiTypeOptions () {
         return [{label: 'Helau', value: 'Helau'},
@@ -73,12 +76,6 @@ export default class BetterConfetti extends LightningElement {
                 console.log('Error Loading Confetti Script');
 
             });
-    
-        //load the music file immediately to make it available for instant play
-        let playThis = BETTERCONFETTI;
-        playThis += '/betterConfetti/music/'+this.musicType + '.mp3';
-        this.playSound = new Audio(playThis);
-    
     }
     
 
@@ -134,10 +131,6 @@ export default class BetterConfetti extends LightningElement {
 
     onChangeMusicType(event){
         this.musicType=event.detail.value;
-        //load the music file immediately to make it available for instant play
-        let playThis = BETTERCONFETTI;
-        playThis += '/betterConfetti/music/'+this.musicType + '.mp3';
-        this.playSound = new Audio(playThis);        
     }
 
 
@@ -152,7 +145,12 @@ export default class BetterConfetti extends LightningElement {
     }
 
     playMusic(){
+        let playThis = BETTERCONFETTI;
+        console.log('this.musicType');
+        console.log(this.musicType);
+        playThis += '/betterConfetti/music/'+this.musicType + '.mp3';
 
+        var playSound = new Audio(playThis);
         this.playSound.play();
 
 
