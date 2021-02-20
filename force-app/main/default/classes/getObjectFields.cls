@@ -1,5 +1,5 @@
 
-public without sharing class getObjectFields extends VisualEditor.DynamicPickList {
+public with sharing class getObjectFields extends VisualEditor.DynamicPickList {
 
     VisualEditor.DesignTimePageContext context;
 
