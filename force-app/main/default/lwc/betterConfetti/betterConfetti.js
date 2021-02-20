@@ -21,8 +21,6 @@ export default class BetterConfetti extends LightningElement {
     playSound;
     oldFieldValue;
     confettiInitialized = false;
-    fieldToBeChecked;
-
 
     get confettiTypeOptions () {
         return [{label: 'Helau', value: 'Helau'},
@@ -45,13 +43,8 @@ export default class BetterConfetti extends LightningElement {
                 {label: 'Heimkommen', value: 'Heimkommen'}];
     }
 
-
-    connectedCallback() {
-        if(this.fieldToBeChecked == undefined){
-            this.fieldToBeChecked = this.objectApiName+'.'+this.field ;
-        }
-
-        console.log(this.fieldToBeChecked);
+    get fieldToBeChecked() {
+        return this.objectApiName + '.' + this.field;
     }
 
     renderedCallback() {
@@ -88,12 +81,7 @@ export default class BetterConfetti extends LightningElement {
         console.log('getcontactRecord fired');
         console.log('oldFieldValue: '+this.oldFieldValue);
         console.log('this.fieldToBeChecked: '+this.fieldToBeChecked);
-        if(typeof this.fieldToBeChecked === "undefined"){
-            console.log('if(typeof this.fieldToBeChecked === undefined');
-            return;
-        }
-
-        if (data) {
+        if (data && this.fieldToBeChecked) {
             //compare if value changed and if value changed
             console.log('newFieldValue: '+data);
             console.log(data);
