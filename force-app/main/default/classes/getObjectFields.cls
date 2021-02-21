@@ -1,5 +1,5 @@
 
-public inherited sharing class getObjectFields extends VisualEditor.DynamicPickList {
+public with sharing class getObjectFields extends VisualEditor.DynamicPickList {
 
     VisualEditor.DesignTimePageContext context;
 
@@ -38,7 +38,7 @@ public inherited sharing class getObjectFields extends VisualEditor.DynamicPickL
             DescribeFieldResult dfr = describeResult.get(key).getDescribe();
             Schema.DisplayType typeName = dfr.getType();
             
-            if (Schema.DisplayType.STRING == typeName || Schema.DisplayType.BOOLEAN == typeName || Schema.DisplayType.PICKLIST == typeName) {
+            if ((Schema.DisplayType.STRING == typeName || Schema.DisplayType.BOOLEAN == typeName || Schema.DisplayType.PICKLIST == typeName) && dfr.isAccessible()) {
                 fieldMap.put(dfr.getName(), dfr.getLabel());
             }
         }
