@@ -23,12 +23,9 @@ export default class BetterConfetti extends LightningElement {
 
     oldFieldValue;
     confettiInitialized = false;
-<<<<<<< HEAD
     get fieldToBeChecked(){
         return this.objectApiName+'.'+this.field ;
     }
-=======
->>>>>>> c6f77bbeb61f129c8b7b22c2e77d0d390d3986ab
 
     get confettiTypeOptions () {
         return [{label: 'Helau', value: 'Helau'},
@@ -141,21 +138,14 @@ export default class BetterConfetti extends LightningElement {
     }
 
     playMusic(){
-<<<<<<< HEAD
-        let playThis = BETTERCONFETTI;
-        console.log('this.musicType');
-        console.log(this.musicType);
-        playThis += '/betterConfetti/music/'+this.musicType + '.mp3';
-
-        var playSound = new Audio(playThis);
-        this.playSound.play();
-
-
-=======
         if(this.playSound) {
+            let playThis = BETTERCONFETTI;
+            playThis += '/betterConfetti/music/'+this.musicType + '.mp3';
+            var playSound = new Audio(playThis);
             this.playSound.play();
         }
->>>>>>> c6f77bbeb61f129c8b7b22c2e77d0d390d3986ab
+
+
     }
 
 
