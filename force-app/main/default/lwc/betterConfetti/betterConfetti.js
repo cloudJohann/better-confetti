@@ -1,6 +1,7 @@
 import { LightningElement, api, wire } from 'lwc';
 import { getRecord } from 'lightning/uiRecordApi';
 import BETTERCONFETTI from '@salesforce/resourceUrl/betterConfetti';
+import formFactorPropertyName from '@salesforce/client/formFactor'
 import { loadScript, loadStyle } from 'lightning/platformResourceLoader';
 import { confettiHelau_Utils, feuerwerk_Utils, kanone_Utils, Doppelfontaene_Utils, regen_Utils } from './confettiGenerator';
 
@@ -17,6 +18,8 @@ export default class BetterConfetti extends LightningElement {
     
     @api musicActivated;
     @api musicType;
+
+    fieldValueChangedAsDefined = false;
 
     
     
@@ -51,9 +54,14 @@ export default class BetterConfetti extends LightningElement {
     }
 
     renderedCallback() {
-        if (this.confettiInitialized) {
-            return;
+        if (!this.confettiInitialized) {
+            this.loadConfettiScript();
         }
+
+
+    }
+
+    loadConfettiScript(){
         let betterConfettiScriptResource = BETTERCONFETTI + '/betterConfetti/confettiScript/confetti_script.js';
         console.log(betterConfettiScriptResource);
 
@@ -62,10 +70,6 @@ export default class BetterConfetti extends LightningElement {
         ])
             .then(() => {
                 this.confettiInitialized = true;
-                //load the music file immediately to make it available for instant play
-                let playThis = BETTERCONFETTI;
-                playThis += '/betterConfetti/music/'+this.musicType + '.mp3';
-                this.playSound = new Audio(playThis);
             })
             .catch(error => {
                 console.log('Error Loading Confetti Script');
@@ -80,7 +84,8 @@ export default class BetterConfetti extends LightningElement {
         console.log('getcontactRecord fired');
         console.log('oldFieldValue: '+this.oldFieldValue);
         console.log('this.fieldToBeChecked: '+this.fieldToBeChecked);
-        if (data && this.fieldToBeChecked) {
+        console.log('formFactorPropertyName: '+formFactorPropertyName);
+        if (data && this.fieldToBeChecked && formFactorPropertyName == 'Large') {
             //compare if value changed and if value changed
             console.log('newFieldValue: '+data);
             console.log(data);
@@ -95,11 +100,12 @@ export default class BetterConfetti extends LightningElement {
             if(this.oldFieldValue != newValue && this.oldFieldValue != undefined){
                 if(newValue.toLowerCase() == this.value.toLowerCase()){
                     console.log('field value changed and criteria fulfilled');
+                    this.fieldValueChangedAsDefined = true;
+
                     if(this.musicActivated){
                         this.playMusic(); 
                     }      
                     if(this.confettiActivated){
-                        console.log
                         this.fireConfetti(); 
                     }
               
@@ -135,13 +141,11 @@ export default class BetterConfetti extends LightningElement {
     }
 
     playMusic(){
-        if(this.playSound) {
-            let playThis = BETTERCONFETTI;
-            playThis += '/betterConfetti/music/'+this.musicType + '.mp3';
-            var playSound = new Audio(playThis);
-            this.playSound.play();
-        }
-
+        let playThis = BETTERCONFETTI;
+        playThis += '/betterConfetti/music/'+this.musicType + '.mp3';
+        console.log('playMusic playThis ' + playThis);
+        var playSound = new Audio(playThis);
+        playSound.play();
 
     }
 
