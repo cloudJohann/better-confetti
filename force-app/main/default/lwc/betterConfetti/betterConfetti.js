@@ -23,9 +23,7 @@ export default class BetterConfetti extends LightningElement {
 
     oldFieldValue;
     confettiInitialized = false;
-    get fieldToBeChecked(){
-        return this.objectApiName+'.'+this.field ;
-    }
+
 
     get confettiTypeOptions () {
         return [{label: 'Helau', value: 'Helau'},
@@ -48,8 +46,8 @@ export default class BetterConfetti extends LightningElement {
                 {label: 'Heimkommen', value: 'Heimkommen'}];
     }
 
-    get fieldToBeChecked() {
-        return this.objectApiName + '.' + this.field;
+    get fieldToBeChecked(){
+        return this.objectApiName+'.'+this.field ;
     }
 
     renderedCallback() {
@@ -57,7 +55,6 @@ export default class BetterConfetti extends LightningElement {
             return;
         }
         let betterConfettiScriptResource = BETTERCONFETTI + '/betterConfetti/confettiScript/confetti_script.js';
-        //let betterConfettiScriptResource = CONFETTI;
         console.log(betterConfettiScriptResource);
 
         Promise.all([
