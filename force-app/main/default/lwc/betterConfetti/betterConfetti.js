@@ -23,9 +23,12 @@ export default class BetterConfetti extends LightningElement {
 
     oldFieldValue;
     confettiInitialized = false;
+<<<<<<< HEAD
     get fieldToBeChecked(){
         return this.objectApiName+'.'+this.field ;
     }
+=======
+>>>>>>> c6f77bbeb61f129c8b7b22c2e77d0d390d3986ab
 
     get confettiTypeOptions () {
         return [{label: 'Helau', value: 'Helau'},
@@ -48,20 +51,14 @@ export default class BetterConfetti extends LightningElement {
                 {label: 'Heimkommen', value: 'Heimkommen'}];
     }
 
-
-    connectedCallback() {
-        if(this.fieldToBeChecked == undefined){
-            this.fieldToBeChecked = this.objectApiName+'.'+this.field ;
-        }
-
-        console.log(this.fieldToBeChecked);
+    get fieldToBeChecked() {
+        return this.objectApiName + '.' + this.field;
     }
 
     renderedCallback() {
         if (this.confettiInitialized) {
             return;
         }
-        this.confettiInitialized = true;
         let betterConfettiScriptResource = BETTERCONFETTI + '/betterConfetti/confettiScript/confetti_script.js';
         //let betterConfettiScriptResource = CONFETTI;
         console.log(betterConfettiScriptResource);
@@ -70,8 +67,12 @@ export default class BetterConfetti extends LightningElement {
             loadScript(this, betterConfettiScriptResource),
         ])
             .then(() => {
-                console.log('Confetti loaded');
-                            })
+                this.confettiInitialized = true;
+                //load the music file immediately to make it available for instant play
+                let playThis = BETTERCONFETTI;
+                playThis += '/betterConfetti/music/'+this.musicType + '.mp3';
+                this.playSound = new Audio(playThis);
+            })
             .catch(error => {
                 console.log('Error Loading Confetti Script');
 
@@ -85,12 +86,7 @@ export default class BetterConfetti extends LightningElement {
         console.log('getcontactRecord fired');
         console.log('oldFieldValue: '+this.oldFieldValue);
         console.log('this.fieldToBeChecked: '+this.fieldToBeChecked);
-        if(typeof this.fieldToBeChecked === "undefined"){
-            console.log('if(typeof this.fieldToBeChecked === undefined');
-            return;
-        }
-
-        if (data) {
+        if (data && this.fieldToBeChecked) {
             //compare if value changed and if value changed
             console.log('newFieldValue: '+data);
             console.log(data);
@@ -135,16 +131,17 @@ export default class BetterConfetti extends LightningElement {
 
 
     fireConfetti(){
-        if(this.confettiType=="Helau") confettiHelau_Utils();
-        if(this.confettiType=="Doppelfontaene") Doppelfontaene_Utils();
-        if(this.confettiType=="Feuerwerk") feuerwerk_Utils();
-        if(this.confettiType=="Kanone") kanone_Utils();
-        if(this.confettiType=="Regen") regen_Utils();
-
-
+        if(this.confettiInitialized) {
+            if(this.confettiType=="Helau") confettiHelau_Utils();
+            if(this.confettiType=="Doppelfontaene") Doppelfontaene_Utils();
+            if(this.confettiType=="Feuerwerk") feuerwerk_Utils();
+            if(this.confettiType=="Kanone") kanone_Utils();
+            if(this.confettiType=="Regen") regen_Utils();
+        }
     }
 
     playMusic(){
+<<<<<<< HEAD
         let playThis = BETTERCONFETTI;
         console.log('this.musicType');
         console.log(this.musicType);
@@ -154,6 +151,11 @@ export default class BetterConfetti extends LightningElement {
         this.playSound.play();
 
 
+=======
+        if(this.playSound) {
+            this.playSound.play();
+        }
+>>>>>>> c6f77bbeb61f129c8b7b22c2e77d0d390d3986ab
     }
 
 
