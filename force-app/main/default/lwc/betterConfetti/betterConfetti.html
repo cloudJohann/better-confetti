@@ -3,12 +3,8 @@
 
         <lightning-card
             variant="narrow"
-            icon-name="action:preview">
-            <h1 slot="title">Fabulous Confetti Preview</h1>
-
-            <p class="slds-p-horizontal_small slds-m-bottom_x-small">Field: {field}</p>
-            <p class="slds-p-horizontal_small slds-m-bottom_x-small">Value: {value}</p>
-
+            icon-name="standard:topic">
+            <h1 slot="title">Fabulous Fun Mode</h1>
             <p class="slds-p-horizontal_small">
                 <lightning-combobox
                     name="confettiType"
@@ -29,7 +25,13 @@
                     onchange = {onChangeMusicType}>
                     </lightning-combobox>
                 <lightning-button variant="brand" label="Play Music"  onclick={playMusic} class="slds-m-top_x-small"></lightning-button>
+                 
             </p>
+            <p></p>
+        </br>
+            <p class="slds-p-horizontal_small slds-m-bottom_x-small">Field: {field}</p>
+            <p class="slds-p-horizontal_small slds-m-bottom_x-small">Value: {value}</p>
+
         </lightning-card>
     </template>
 

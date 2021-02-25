@@ -10,10 +10,10 @@
     <targetConfigs>
         <targetConfig targets="lightning__RecordPage">
             <property label = "Preview Mode" name ="previewActivated" type = "Boolean" description="Activates Buttons on the Component to preview different confetti and music." default="false"></property>
-            <property label = "Field (API Name)" name ="field" type = "String"  datasource="apex://getObjectFields" description="Choose the field you want the music and confetti to trigger on."></property>
+            <property label = "Field (API Name)" name ="field" type = "String"  datasource="apex://getObjectFields" description="Choose the field you want the music and confetti to trigger on." required="true"></property>
             <property label = "Value (API Value)" name ="value" type = "String"  required="true" description="The target value of the field. 'True' or 'False' for checkboxes. For Picklists the API Value."></property>
             <property label = "Confetti Activated" name = "confettiActivated" type="Boolean" default = "true" description="Should Confetti fire?"> </property>
-            <property label = "Confetti Type" name ="confettiType" type = "String" datasource="Helau,Doppelfontaene,Feuerwerk, Kanone, Regen" default="Helau"  required="true"></property>
+            <property label = "Confetti Type" name ="confettiType" type = "String" datasource="Helau,Doppelfontaene,Feuerwerk, Kanone, Regen, Nana Rain" default="Helau"  required="true"></property>
             <property label = "Music Activated" name = "musicActivated" type="Boolean" default = "false" description="Should Music play?"> </property>
             <property label = "Music Type" name ="musicType" type = "String" datasource="Schloss,Bratenfreude,SonntagNachmittag,Up,Sommer,Schlosseingang,Preisverleihung,Heimkommen" default="Schlosseingang"  required="false"></property>
 

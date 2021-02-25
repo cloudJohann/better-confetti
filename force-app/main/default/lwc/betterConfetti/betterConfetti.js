@@ -3,7 +3,7 @@ import { getRecord } from 'lightning/uiRecordApi';
 import BETTERCONFETTI from '@salesforce/resourceUrl/betterConfetti';
 import formFactorPropertyName from '@salesforce/client/formFactor'
 import { loadScript, loadStyle } from 'lightning/platformResourceLoader';
-import { confettiHelau_Utils, feuerwerk_Utils, kanone_Utils, Doppelfontaene_Utils, regen_Utils } from './confettiGenerator';
+import { confettiHelau_Utils, feuerwerk_Utils, kanone_Utils, Doppelfontaene_Utils, regen_Utils,nanaRain_Utils } from './confettiGenerator';
 
 
 export default class BetterConfetti extends LightningElement {
@@ -33,7 +33,8 @@ export default class BetterConfetti extends LightningElement {
                 {label: 'Doppelfontaene', value:'Doppelfontaene'},
                 {label: 'Feuerwerk', value:'Feuerwerk'},
                 {label: 'Kanone', value:'Kanone'},
-                {label: 'Regen', value:'Regen'}];
+                {label: 'Regen', value:'Regen'},
+                {label: 'Nana Rain', value:'Nana Rain'}];
     }
 
 
@@ -101,13 +102,15 @@ export default class BetterConfetti extends LightningElement {
                 if(newValue.toLowerCase() == this.value.toLowerCase()){
                     console.log('field value changed and criteria fulfilled');
                     this.fieldValueChangedAsDefined = true;
-
-                    if(this.musicActivated){
-                        this.playMusic(); 
-                    }      
-                    if(this.confettiActivated){
-                        this.fireConfetti(); 
-                    }
+                    setTimeout(() => {
+                        
+                        if(this.musicActivated){
+                            this.playMusic(); 
+                        }      
+                        if(this.confettiActivated){
+                            this.fireConfetti(); 
+                        }
+                    },1000);
               
                 }
             }
@@ -137,6 +140,8 @@ export default class BetterConfetti extends LightningElement {
             if(this.confettiType=="Feuerwerk") feuerwerk_Utils();
             if(this.confettiType=="Kanone") kanone_Utils();
             if(this.confettiType=="Regen") regen_Utils();
+            if(this.confettiType=="Nana Rain") nanaRain_Utils();
+
         }
     }
 

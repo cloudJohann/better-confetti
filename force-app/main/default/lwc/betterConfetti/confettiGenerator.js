@@ -1,6 +1,6 @@
 
 const colors = ['#610B0B','#FFFF00','#FF00BF','#0040FF','#585858','#00FFBF','#FE642E','#FFBF00','#0101DF','#FF8000','#00FF00','#FF0040','#A901DB','#0B0B3B','#FF0000']
-
+const colorGreen = ['green'];
 
 export function feuerwerk_Utils(){
     var end = Date.now() + (9 * 100);
@@ -23,6 +23,41 @@ export function feuerwerk_Utils(){
             colors : colors
         });
     }, 200);
+}
+
+export function nanaRain_Utils(){
+    var duration = 15 * 150;
+    var animationEnd = Date.now() + duration;
+    var skew = 1;
+    
+    function randomInRange(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+    
+    (function frame() {
+      var timeLeft = animationEnd - Date.now();
+      var ticks = Math.max(200, 500 * (timeLeft / duration));
+      skew = Math.max(0.8, skew - 0.001);
+    
+      window.confetti({
+        particleCount: 1,
+        startVelocity: 0,
+        ticks: ticks,
+        gravity: 0.5,
+        origin: {
+          x: Math.random(),
+          // since particles fall down, skew start toward the top
+          y: (Math.random() * skew) - 0.2
+        },
+        colors: ['#85bb65'],
+        shapes: ['dollarBills'],
+        scalar: randomInRange(0.4, 1)
+      });
+    
+      if (timeLeft > 0) {
+        requestAnimationFrame(frame);
+      }
+    }());
 }
 
 export function regen_Utils(){
