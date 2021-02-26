@@ -3,7 +3,7 @@
         {
             "path": "force-app",
             "package": "Fabulous Confetti",
-            "versionName": "ver 0.1",
+            "versionName": "ver 0.3",
             "versionNumber": "0.1.0.NEXT",
             "default": true
         }
@@ -17,6 +17,7 @@
         "Fabulous Confetti@0.1.0-2": "04t09000000IyyQAAS",
         "Fabulous Confetti@0.1.0-3": "04t09000000IzOeAAK",
         "Fabulous Confetti@0.1.0-4": "04t09000000IzOjAAK",
-        "Fabulous Confetti@0.1.0-5": "04t09000000IzTQAA0"
+        "Fabulous Confetti@0.1.0-5": "04t09000000IzTQAA0",
+        "Fabulous Confetti@0.2.0-1": "04t09000000J1BiAAK"
     }
 }
