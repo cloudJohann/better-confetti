@@ -1,6 +1,8 @@
 import { LightningElement, api, wire } from 'lwc';
 import { getRecord } from 'lightning/uiRecordApi';
 import BETTERCONFETTI from '@salesforce/resourceUrl/betterConfetti';
+import checkActiveLicense from '@salesforce/apex/checkActiveLicense.currentUserActiveLicense';
+
 import formFactorPropertyName from '@salesforce/client/formFactor'
 import { loadScript, loadStyle } from 'lightning/platformResourceLoader';
 import { confettiHelau_Utils, feuerwerk_Utils, kanone_Utils, Doppelfontaene_Utils, regen_Utils,nanaRain_Utils } from './confettiGenerator';
@@ -18,6 +20,7 @@ export default class BetterConfetti extends LightningElement {
     
     @api musicActivated;
     @api musicType;
+    userLicencseActive = false;
 
     fieldValueChangedAsDefined = false;
 
@@ -55,6 +58,7 @@ export default class BetterConfetti extends LightningElement {
     }
 
     renderedCallback() {
+        this.checkUserLicense();
         if (!this.confettiInitialized) {
             this.loadConfettiScript();
         }
@@ -62,9 +66,19 @@ export default class BetterConfetti extends LightningElement {
 
     }
 
+    checkUserLicense(){
+         //Calls Empty class, if licences expired or suspended access will fail and component will not fire confetti
+        checkActiveLicense()
+            .then(result => {
+                this.userLicencseActive = true;
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+
     loadConfettiScript(){
         let betterConfettiScriptResource = BETTERCONFETTI + '/betterConfetti/confettiScript/confetti_script.js';
-        console.log(betterConfettiScriptResource);
 
         Promise.all([
             loadScript(this, betterConfettiScriptResource),
@@ -82,35 +96,28 @@ export default class BetterConfetti extends LightningElement {
 
     @wire(getRecord, { recordId: '$recordId', fields: '$fieldToBeChecked'})
     getcontactRecord({ data, error }) {
-        console.log('getcontactRecord fired');
-        console.log('oldFieldValue: '+this.oldFieldValue);
-        console.log('this.fieldToBeChecked: '+this.fieldToBeChecked);
-        console.log('formFactorPropertyName: '+formFactorPropertyName);
         if (data && this.fieldToBeChecked && formFactorPropertyName == 'Large') {
             //compare if value changed and if value changed
-            console.log('newFieldValue: '+data);
-            console.log(data);
-
-            console.log(data.fields[this.field].value);
             let newValue = '';
             if(data.fields[this.field].value != null){
                 newValue = data.fields[this.field].value;
             }
-            console.log('newValue: ' +newValue);
             newValue = newValue.toString();
             if(this.oldFieldValue != newValue && this.oldFieldValue != undefined){
                 if(newValue.toLowerCase() == this.value.toLowerCase()){
-                    console.log('field value changed and criteria fulfilled');
                     this.fieldValueChangedAsDefined = true;
-                    setTimeout(() => {
+                    if(this.userLicencseActive){
+                        setTimeout(() => {
                         
-                        if(this.musicActivated){
-                            this.playMusic(); 
-                        }      
-                        if(this.confettiActivated){
-                            this.fireConfetti(); 
-                        }
-                    },1000);
+                            if(this.musicActivated){
+                                this.playMusic(); 
+                            }      
+                            if(this.confettiActivated){
+                                this.fireConfetti(); 
+                            }
+                        },1000);
+                    }
+
               
                 }
             }
@@ -119,7 +126,6 @@ export default class BetterConfetti extends LightningElement {
 
 
         } else if (error) {
-            console.error('ERROR => ', JSON.stringify(error)); // handle error properly
         }
 
     }
@@ -148,7 +154,6 @@ export default class BetterConfetti extends LightningElement {
     playMusic(){
         let playThis = BETTERCONFETTI;
         playThis += '/betterConfetti/music/'+this.musicType + '.mp3';
-        console.log('playMusic playThis ' + playThis);
         var playSound = new Audio(playThis);
         playSound.play();
 
