@@ -1,27 +1,17 @@
 {
   "orgName": "Fabulous Confetti",
-  "edition": "developer",
+  "edition": "Developer",
   "language": "en_US",
-  "features": [
-    "COMMUNITIES"
-  ],
+
   "settings": {
     "lightningExperienceSettings": {
       "enableS1DesktopEnabled": true
     },
     "securitySettings": {
-      "passwordPolicies": {
-        "enableSetPasswordInApi": true
-      }
+
     },
     "mobileSettings": {
       "enableS1EncryptedStoragePref2": false
-    },
-    "experienceBundleSettings": {
-      "enableExperienceBundleMetadata": true
-    },
-    "communitiesSettings": {
-      "enableNetworksEnabled": true
     }
 
   }
