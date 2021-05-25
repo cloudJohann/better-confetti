@@ -5,7 +5,9 @@
             "package": "Fabulous Confetti",
             "versionName": "Spring 21",
             "versionNumber": "0.1.0.NEXT",
-            "default": true
+            "ancestorVersion": "1.1.0.1",
+            "default": true,
+            "definitionFile": "config/project-scratch-def.json"
         }
     ],
     "namespace": "adminshelper",
@@ -20,6 +22,7 @@
         "Fabulous Confetti@0.1.0-5": "04t09000000IzTQAA0",
         "Fabulous Confetti@0.2.0-1": "04t09000000J1BiAAK",
         "Fabulous Confetti@1.0.0-1": "04t09000000J2LbAAK",
-        "Fabulous Confetti@1.1.0-1": "04t09000000N8AdAAK"
+        "Fabulous Confetti@1.1.0-1": "04t09000000N8AdAAK",
+        "Fabulous Confetti@1.2.0-1": "04t09000000NNaZAAW"
     }
 }
