@@ -37,7 +37,12 @@ export default class BetterConfetti extends LightningElement {
                 {label: 'Feuerwerk', value:'Feuerwerk'},
                 {label: 'Kanone', value:'Kanone'},
                 {label: 'Regen', value:'Regen'},
-                {label: 'Nana Rain', value:'Nana Rain'}];
+                {label: 'Nana Rain', value:'Nana Rain'},
+                {label: 'Jonis Unicorns', value:'Jonis Unicorns'},
+                {label: 'Diamonds are forever', value:'Diamonds are forever'},
+                {label: 'Irina the Cat', value:'Irina the Cat'},
+                {label: 'You are on fire', value:'You are on fire'},
+                {label: 'Raibow J', value:'Rainbow J'}];
     }
 
 
@@ -142,11 +147,18 @@ export default class BetterConfetti extends LightningElement {
     fireConfetti(){
         if(this.confettiInitialized) {
             if(this.confettiType=="Helau") confettiHelau_Utils();
+            if(this.confettiType=="Rainbow J") confettiHelau_Utils();
             if(this.confettiType=="Doppelfontaene") Doppelfontaene_Utils();
             if(this.confettiType=="Feuerwerk") feuerwerk_Utils();
             if(this.confettiType=="Kanone") kanone_Utils();
             if(this.confettiType=="Regen") regen_Utils();
-            if(this.confettiType=="Nana Rain") nanaRain_Utils();
+            if(this.confettiType=="Nana Rain") regen_Utils('💰');            
+            if(this.confettiType=="Rainbow J") kanone_Utils('🌈');
+            if(this.confettiType=="Jonis Unicorns") Doppelfontaene_Utils('🦄');
+            if(this.confettiType=="Diamonds are forever") feuerwerk_Utils('💎');
+            if(this.confettiType=="Irina the Cat") confettiHelau_Utils('🐈');
+            if(this.confettiType=="You are on fire") regen_Utils('🔥');
+
 
         }
     }

@@ -2,8 +2,13 @@
 const colors = ['#610B0B','#FFFF00','#FF00BF','#0040FF','#585858','#00FFBF','#FE642E','#FFBF00','#0101DF','#FF8000','#00FF00','#FF0040','#A901DB','#0B0B3B','#FF0000']
 const colorGreen = ['green'];
 
-export function feuerwerk_Utils(){
+export function feuerwerk_Utils(emoji){
     var end = Date.now() + (9 * 100);
+	let shapeSetting;
+    if (typeof(emoji) == "string"){
+        shapeSetting =  ['emoji:'+emoji];
+    }   
+
     
     var interval = setInterval(function() {
         if (Date.now() > end) {
@@ -20,7 +25,8 @@ export function feuerwerk_Utils(){
                 // since they fall down, start a bit higher than random
                 y: Math.random() - 0.2
             },
-            colors : colors
+            colors : colors,
+            shapes: shapeSetting
         });
     }, 200);
 }
@@ -60,8 +66,12 @@ export function nanaRain_Utils(){
     }());
 }
 
-export function regen_Utils(){
+export function regen_Utils(emoji){
     var end = Date.now() + (20 * 100);
+	let shapeSetting;
+    if (typeof(emoji) == "string"){
+        shapeSetting =  ['emoji:'+emoji];
+    }   
     
     (function frame() {
         window.confetti({
@@ -73,7 +83,8 @@ export function regen_Utils(){
                 // since they fall down, start a bit higher than random
                 y: 0
             },
-            colors: colors
+            colors: colors,
+            shapes: shapeSetting            
         });
         
         if (Date.now() < end) {
@@ -83,7 +94,11 @@ export function regen_Utils(){
 }
 
 
-export function kanone_Utils () {
+export function kanone_Utils (emoji) {
+    let shapeSetting;
+    if (typeof(emoji) == "string"){
+        shapeSetting =  ['emoji:'+emoji];
+    }    
     window.confetti({
         particleCount: 200,
         startVelocity: 60,
@@ -91,12 +106,20 @@ export function kanone_Utils () {
         origin: {
             y: 0.9
         },
-        colors : colors
+        colors : colors,
+        shapes: shapeSetting
+
+
     });
 }
 
-export function Doppelfontaene_Utils(){
+export function Doppelfontaene_Utils(emoji){
         var end = Date.now() + (3 * 100);
+        let shapeSetting;
+        if (typeof(emoji) == "string"){
+            shapeSetting =  ['emoji:'+emoji];
+        }   
+    
         
         (function frame() {
             confetti({
@@ -107,7 +130,9 @@ export function Doppelfontaene_Utils(){
                     x: 0,
                     y : 0.65
                 },
-                colors: colors
+                colors: colors,
+                shapes: shapeSetting                
+
             });
             confetti({
                 particleCount: 5,
@@ -117,7 +142,8 @@ export function Doppelfontaene_Utils(){
                     x: 1,
                     y : 0.65
                 },
-                colors: colors
+                colors: colors,
+                shapes: shapeSetting                
             });
             
             if (Date.now() < end) {
@@ -127,27 +153,32 @@ export function Doppelfontaene_Utils(){
     }
 
 
-export function confettiHelau_Utils(){
-        fireRealistic(0.9, 0.7);
-        fireRealistic(0.5, 0.7);
-        fireRealistic(0.1, 0.7); 
+export function confettiHelau_Utils(emoji){
+        fireRealistic(0.9, 0.7, emoji);
+        fireRealistic(0.5, 0.7, emoji);
+        fireRealistic(0.1, 0.7, emoji); 
 
     }
     
 
 
-    function fireRealistic(xCordinate, yCordinate){
-
+    function fireRealistic(xCordinate, yCordinate, emoji){
+        let shapeSetting;
+        if (typeof(emoji) == "string"){
+            shapeSetting =  ['emoji:'+emoji];
+        }   
+    
         fireForRealsitic(0.25, {
           spread: 26,
           startVelocity: 55,
           origin: { x: xCordinate ,y: yCordinate },
-          
+          shapes: shapeSetting          
           
         });
         fireForRealsitic(0.2, {
-          spread: 60,
+            spread: 60,
             origin: { x: xCordinate, y: yCordinate },
+            shapes: shapeSetting
     
         });
         fireForRealsitic(0.35, {
@@ -155,18 +186,21 @@ export function confettiHelau_Utils(){
           decay: 0.91,
           scalar: 0.8,
           origin: { x: xCordinate, y: yCordinate },
+          shapes: shapeSetting
     
         });
         fireForRealsitic(0.1, {
           spread: 120,
           startVelocity: 25,
           decay: 0.92,
+          shapes: shapeSetting,
           scalar: 1.2,
                         origin: { x: xCordinate, y: yCordinate },
     
         });
         fireForRealsitic(0.1, {
           spread: 120,
+          shapes: shapeSetting,
           startVelocity: 45,
                         origin: { x: xCordinate, y: yCordinate },
     
