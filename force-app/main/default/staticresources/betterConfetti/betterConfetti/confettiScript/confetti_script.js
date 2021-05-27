@@ -350,7 +350,9 @@
 		context.strokeStyle = '#228D57'
 		context.lineWidth = 4;
 		context.stroke();
-	} 
+	}else if (fetti.shape.substring(0, 6) === 'emoji:') {
+    context.fillText(fetti.shape.substring(6) , x1, y1);
+  } 
 
 	context.fill();
 
