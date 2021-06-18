@@ -93,6 +93,33 @@ export function regen_Utils(emoji){
     }());
 }
 
+export function flyingPigs_Utils(emoji){
+    var end = Date.now() + (90 * 100);
+	let shapeSetting;
+    if (typeof(emoji) == "string"){
+        shapeSetting =  ['emoji:'+emoji];
+    }   
+    
+    (function frame() {
+        window.confetti({
+            particleCount: 1,
+            startVelocity: 0,
+            ticks: 900,
+            origin: {
+                x: 0,
+                // since they fall down, start a bit higher than random
+                y: Math.random()
+            },
+            colors: colors,
+            shapes: shapeSetting            
+        });
+        
+        if (Date.now() < end) {
+            requestAnimationFrame(frame);
+        }
+    }());
+}
+
 
 export function kanone_Utils (emoji) {
     let shapeSetting;

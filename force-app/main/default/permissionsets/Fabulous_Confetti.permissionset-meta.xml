@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <classAccesses>
+        <apexClass>checkActiveLicense</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>checkActiveLicense_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>getObjectFields</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>getObjectFields_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <description>The Admin&apos;s Helper app Fabulous Confetti access is controled by this Permission Set.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Fabulous Confetti</label>
+</PermissionSet>
