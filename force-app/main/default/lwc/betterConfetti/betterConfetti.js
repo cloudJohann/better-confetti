@@ -5,7 +5,7 @@ import checkActiveLicense from '@salesforce/apex/checkActiveLicense.currentUserA
 
 import formFactorPropertyName from '@salesforce/client/formFactor'
 import { loadScript, loadStyle } from 'lightning/platformResourceLoader';
-import { confettiHelau_Utils, feuerwerk_Utils, kanone_Utils, Doppelfontaene_Utils, regen_Utils,nanaRain_Utils } from './confettiGenerator';
+import { confettiHelau_Utils, feuerwerk_Utils, kanone_Utils, Doppelfontaene_Utils, regen_Utils,nanaRain_Utils, flyingPigs_Utils } from './confettiGenerator';
 
 
 export default class BetterConfetti extends LightningElement {
@@ -42,6 +42,7 @@ export default class BetterConfetti extends LightningElement {
                 {label: 'Diamonds are forever', value:'Diamonds are forever'},
                 {label: 'Irina the Cat', value:'Irina the Cat'},
                 {label: 'You are on fire', value:'You are on fire'},
+                {label: 'Pigs are in the Air', value:'Pigs are in the Air'},
                 {label: 'Raibow J', value:'Rainbow J'}];
     }
 
@@ -158,6 +159,8 @@ export default class BetterConfetti extends LightningElement {
             if(this.confettiType=="Diamonds are forever") feuerwerk_Utils('💎');
             if(this.confettiType=="Irina the Cat") confettiHelau_Utils('🐈');
             if(this.confettiType=="You are on fire") regen_Utils('🔥');
+            if(this.confettiType=="Pigs are in the Air") flyingPigs_Utils('🐖');
+
 
 
         }

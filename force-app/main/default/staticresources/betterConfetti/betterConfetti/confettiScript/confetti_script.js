@@ -309,8 +309,13 @@
   }
 
   function updateFetti(context, fetti) {
-    fetti.x += Math.cos(fetti.angle2D) * fetti.velocity;
-    fetti.y += Math.sin(fetti.angle2D) * fetti.velocity + fetti.gravity;
+    if (fetti.shape === 'emoji:🐖') {
+      fetti.x += Math.cos(fetti.angle2D) * fetti.velocity + fetti.gravity;
+      fetti.y += Math.sin(fetti.angle2D) * fetti.velocity ;
+    } else {
+      fetti.x += Math.cos(fetti.angle2D) * fetti.velocity;
+      fetti.y += Math.sin(fetti.angle2D) * fetti.velocity + fetti.gravity;
+    }
     fetti.wobble += 0.1;
     fetti.velocity *= fetti.decay;
     fetti.tiltAngle += 0.1;
