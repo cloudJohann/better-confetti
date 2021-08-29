@@ -11,7 +11,7 @@ import { confettiHelau_Utils, feuerwerk_Utils, kanone_Utils, Doppelfontaene_Util
 export default class BetterConfetti extends LightningElement {
     @api recordId;
     @api objectApiName;
-
+    @api objectApiNameFromCommunity ="";
     @api field;
     @api value;
     @api previewActivated;
@@ -23,7 +23,8 @@ export default class BetterConfetti extends LightningElement {
     userLicencseActive = false;
 
     fieldValueChangedAsDefined = false;
-
+    fieldToBeCheckedRendered = null;
+    fieldToBeChecked;
     
     
 
@@ -59,17 +60,21 @@ export default class BetterConfetti extends LightningElement {
                 {label: 'Heimkommen', value: 'Heimkommen'}];
     }
 
-    get fieldToBeChecked(){
-        return this.objectApiName+'.'+this.field ;
-    }
-
-    renderedCallback() {
+    connectedCallback(){
         this.checkUserLicense();
-        if (!this.confettiInitialized) {
-            this.loadConfettiScript();
+        if(this.objectApiNameFromCommunity != ""){
+            this.fieldToBeChecked = this.objectApiNameFromCommunity+'.'+this.field ;
+        }else{
+            this.fieldToBeChecked = this.objectApiName+'.'+this.field ;
         }
 
 
+    }
+
+    renderedCallback() {
+        if (!this.confettiInitialized) {
+            this.loadConfettiScript();
+        }
     }
 
     checkUserLicense(){
@@ -129,9 +134,8 @@ export default class BetterConfetti extends LightningElement {
             }
 
             this.oldFieldValue = newValue;
-
-
         } else if (error) {
+            console.log(error);
         }
 
     }
