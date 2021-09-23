@@ -5,7 +5,7 @@
             "package": "Fabulous Confetti",
             "versionName": "Summer 21",
             "versionNumber": "0.1.0.NEXT",
-            "ancestorVersion": "1.6.0.1",
+            "ancestorVersion": "1.7.0.1",
             "default": true,
             "definitionFile": "config/project-scratch-def.json"
         }
@@ -28,6 +28,7 @@
         "Fabulous Confetti@1.4.0-1": "04t09000000NaXaAAK",
         "Fabulous Confetti@1.5.0-1": "04t09000000NpeSAAS",
         "Fabulous Confetti@1.6.0-1": "04t09000000NvhcAAC",
-        "Fabulous Confetti@1.7.0-1": "04t09000000NvmEAAS"
+        "Fabulous Confetti@1.7.0-1": "04t09000000NvmEAAS",
+        "Fabulous Confetti@1.8.0-1": "04t09000000NvqbAAC"
     }
 }

@@ -24,7 +24,7 @@
         <targetConfig targets="lightningCommunity__Default">
               <property name="objectApiNameFromCommunity" type="String" label="Object API Name" description="Must contain the API Name of the Object in question" default="Case" required="true"/>
               <property label = "Field (API Name)" name ="field" type = "String"  description="Enter the field API name you want the music and confetti to trigger on." default="Status" required="true"></property>
-              <property label = "Value (API Value)" name ="value" type = "String"  required="true" description="The target value of the field. 'True' or 'False' for checkboxes. For Picklists the API Value."></property>
+              <property label = "Value (API Value)" name ="value" type = "String"  description="The target value of the field. 'True' or 'False' for checkboxes. For Picklists the API Value." required="true" default="Closed"></property>
               <property label = "Fabulous Fun Mode" name ="previewActivated" type = "Boolean" description="Activates Buttons on the Component to preview different confetti and music." default="false"></property>
               <property label = "Confetti Activated" name = "confettiActivated" type="Boolean" default = "true" description="Should Confetti fire?"> </property>
               <property label = "Confetti Type" name ="confettiType" type = "String" datasource="Helau,Doppelfontaene,Feuerwerk, Kanone, Regen, Nana Rain, Rainbow J,Jonis Unicorns, Diamonds are forever, Irina the Cat, You are on fire, Pigs are in the Air" default="Helau"  required="true"></property>
