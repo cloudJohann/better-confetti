@@ -6,6 +6,7 @@ import checkActiveLicense from '@salesforce/apex/checkActiveLicense.currentUserA
 import formFactorPropertyName from '@salesforce/client/formFactor'
 import { loadScript, loadStyle } from 'lightning/platformResourceLoader';
 import { confettiHelau_Utils, feuerwerk_Utils, kanone_Utils, Doppelfontaene_Utils, regen_Utils,nanaRain_Utils, flyingPigs_Utils } from './confettiGenerator';
+export { confettiHelau_Utils, feuerwerk_Utils, kanone_Utils, Doppelfontaene_Utils, regen_Utils,nanaRain_Utils, flyingPigs_Utils } from './confettiGenerator';
 
 
 export default class BetterConfetti extends LightningElement {

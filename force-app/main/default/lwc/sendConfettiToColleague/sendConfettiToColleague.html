@@ -1,0 +1,27 @@
+<template>
+
+    <lightning-card title="Send Fabulous Confetti">
+        <lightning-layout>
+            <lightning-layout-item size="12">
+
+            <lightning-input class="slds-p-around_x-small" label="Colleague" name="userName" 
+            onchange={nameChangedHandler}></lightning-input>
+            <lightning-combobox 
+            class="slds-p-around_x-small"
+            name="confettiType"
+            label="Fabulous Confetti"
+            value={selectedConfettiName}
+            placeholder="Select Confetti"
+            options={confettiOptions}
+            onchange={confettiChanged} ></lightning-combobox>
+            <lightning-input class="slds-p-around_x-small" label="Message" name="messageText" 
+            onchange={messageTextChanged}></lightning-input>    
+
+
+            <lightning-button class="slds-p-around_x-small" label="Send Confetti" variant="brand" 
+            onclick={createFabulousConfettiMessage}></lightning-button>
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card>
+
+</template>
