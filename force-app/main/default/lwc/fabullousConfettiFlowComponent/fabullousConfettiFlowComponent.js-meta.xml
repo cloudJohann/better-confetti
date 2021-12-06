@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>52.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Fabulous Confetti</masterLabel>
+    <description>Add this component to a Flow for Fabulous Confetti and Music.</description>
+    <targets>
+        <target>lightning__FlowScreen</target>
+    </targets>
+  <targetConfigs>
+         <targetConfig targets="lightning__FlowScreen" configurationEditor="c-fabulous-flow-editor">
+          <property name="confetti" type="String"  role="inputOnly"/>
+          <property name="music" type="String"  role="inputOnly"/>
+
+        </targetConfig>
+  </targetConfigs>
+  
+
+</LightningComponentBundle>

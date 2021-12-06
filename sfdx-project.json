@@ -5,7 +5,7 @@
             "package": "Fabulous Confetti",
             "versionName": "Summer 21",
             "versionNumber": "0.1.0.NEXT",
-            "ancestorVersion": "1.3.0.1",
+            "ancestorVersion": "1.6.0.1",
             "default": true,
             "definitionFile": "config/project-scratch-def.json"
         }
