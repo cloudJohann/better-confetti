@@ -1,11 +1,8 @@
 import { LightningElement, api, wire } from 'lwc';
 import { getRecord } from 'lightning/uiRecordApi';
-import BETTERCONFETTI from '@salesforce/resourceUrl/betterConfetti';
 import checkActiveLicense from '@salesforce/apex/checkActiveLicense.currentUserActiveLicense';
 
 import formFactorPropertyName from '@salesforce/client/formFactor'
-import { loadScript, loadStyle } from 'lightning/platformResourceLoader';
-import { confettiHelau_Utils, feuerwerk_Utils, kanone_Utils, Doppelfontaene_Utils, regen_Utils,nanaRain_Utils, flyingPigs_Utils } from './confettiGenerator';
 
 
 export default class BetterConfetti extends LightningElement {
@@ -25,11 +22,8 @@ export default class BetterConfetti extends LightningElement {
     fieldValueChangedAsDefined = false;
     fieldToBeCheckedRendered = null;
     fieldToBeChecked;
-    
-    
 
     oldFieldValue;
-    confettiInitialized = false;
 
 
     get confettiTypeOptions () {
@@ -71,12 +65,6 @@ export default class BetterConfetti extends LightningElement {
 
     }
 
-    renderedCallback() {
-        if (!this.confettiInitialized) {
-            this.loadConfettiScript();
-        }
-    }
-
     checkUserLicense(){
          //Calls Empty class, if licences expired or suspended access will fail and component will not fire confetti
         checkActiveLicense()
@@ -88,20 +76,7 @@ export default class BetterConfetti extends LightningElement {
             })
     }
 
-    loadConfettiScript(){
-        let betterConfettiScriptResource = BETTERCONFETTI + '/betterConfetti/confettiScript/confetti_script.js';
 
-        Promise.all([
-            loadScript(this, betterConfettiScriptResource),
-        ])
-            .then(() => {
-                this.confettiInitialized = true;
-            })
-            .catch(error => {
-                console.log('Error Loading Confetti Script');
-
-            });
-    }
     
 
 
@@ -150,33 +125,11 @@ export default class BetterConfetti extends LightningElement {
 
 
     fireConfetti(){
-        if(this.confettiInitialized) {
-            if(this.confettiType=="Helau") confettiHelau_Utils();
-            if(this.confettiType=="Rainbow J") confettiHelau_Utils();
-            if(this.confettiType=="Doppelfontaene") Doppelfontaene_Utils();
-            if(this.confettiType=="Feuerwerk") feuerwerk_Utils();
-            if(this.confettiType=="Kanone") kanone_Utils();
-            if(this.confettiType=="Regen") regen_Utils();
-            if(this.confettiType=="Nana Rain") regen_Utils('💰');            
-            if(this.confettiType=="Rainbow J") kanone_Utils('🌈');
-            if(this.confettiType=="Jonis Unicorns") Doppelfontaene_Utils('🦄');
-            if(this.confettiType=="Diamonds are forever") feuerwerk_Utils('💎');
-            if(this.confettiType=="Irina the Cat") confettiHelau_Utils('🐈');
-            if(this.confettiType=="You are on fire") regen_Utils('🔥');
-            if(this.confettiType=="Pigs are in the Air") flyingPigs_Utils('🐖');
-
-
-
-        }
+        this.template.querySelector('c-fire-confetti-component').fireConfetti(this.confettiType);       
     }
 
     playMusic(){
-        let playThis = BETTERCONFETTI;
-        playThis += '/betterConfetti/music/'+this.musicType + '.mp3';
-        var playSound = new Audio(playThis);
-        playSound.play();
-
+        this.template.querySelector('c-fire-confetti-component').playMusic(this.musicType);
     }
-
 
 }

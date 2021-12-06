@@ -1,0 +1,26 @@
+<template>
+
+
+        <div class="slds-p-around_xx-small">
+            <lightning-combobox
+            name="confettiType"
+            label="Confetti Type"
+            value={confetti}
+            placeholder="Select Confetti"
+            options={confettiTypeOptions}
+            onchange={handleConfettiTypeChange} ></lightning-combobox>
+    
+        </div>        
+        <div class="slds-p-around_xx-small">
+            <lightning-combobox
+            name="musicType"
+            label="Music Type"
+            value={music}
+            placeholder="Select Music"
+            options={musicTypeOptions}
+            onchange={handleMusicTypeChange} ></lightning-combobox>
+    
+        </div>        
+
+    
+</template>
