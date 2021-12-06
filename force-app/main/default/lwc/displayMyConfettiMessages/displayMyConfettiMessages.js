@@ -5,7 +5,7 @@ import getMyMessagesFromController from '@salesforce/apex/FabulousMessagesContro
 import userIdFromAPI from '@salesforce/user/Id';
 
 import { confettiHelau_Utils, feuerwerk_Utils, kanone_Utils, Doppelfontaene_Utils, regen_Utils,nanaRain_Utils, flyingPigs_Utils } from 'c/betterConfetti';
-
+import {neonLightEffect, simpleTextEffect } from './rainbowMessageGenerator';
 
 export default class DisplayMyConfettiMessages extends LightningElement {
     userId = userIdFromAPI;
@@ -86,47 +86,14 @@ export default class DisplayMyConfettiMessages extends LightningElement {
     }
     
     displayMessageText(message) {
-        if (typeof this.canvas === "undefined") {
-            // create and initialize a new canvas
-            let zIndex = "1";
-            this.canvas = this.getCanvas(zIndex);
-            document.body.appendChild(this.canvas);
-        }
+        console.log('simpleTextEffect before');
+        //neonLightEffect(message);
+        simpleTextEffect(message);
+        
 
-        var ctx = this.canvas.getContext('2d');
-        
-        var textWidth = ctx.measureText(message).width;
-        var lineHeight = 75 * 1.286;
-        
-        var xPosition = this.canvas.width/2 ;
-        var yPosition = this.canvas.height/2;
-
-        ctx.fillStyle = "#009900";
-        ctx.fillRect(xPosition, yPosition, textWidth, lineHeight);
-        
-        ctx.font = '75px arial';
-        ctx.textAlign = 'left';
-        ctx.textBaseline = 'top';    
-        ctx.fillStyle = "red";
-        ctx.fillText(message, xPosition, yPosition);
-        
-        setTimeout(function() {
-            var ctx = this.canvas.getContext('2d');
-            ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        }.bind(this),3000);
     }
 
-    getCanvas(zIndex) {
-        var canvas = document.createElement('canvas');
-        canvas.style.position = 'fixed';
-        canvas.style.top = '0px';
-        canvas.style.left = '0px';
-        canvas.style.pointerEvents = 'none';
-        canvas.style.zIndex = zIndex;
-        canvas.width = document.documentElement.clientWidth;
-        canvas.height = document.documentElement.clientHeight;
-        return canvas;
-      }
+  
     
     
 }
